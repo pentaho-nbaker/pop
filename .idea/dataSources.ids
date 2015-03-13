@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - @pop" uuid="eaf8d20b-3652-48de-96b0-799f364aff16">
+    <database-info product="MySQL" version="5.1.73-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="githubreporting"/>
+    <table name="branch_diff" schema="" catalog="githubreporting" type="TABLE">
+      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="branch_a_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="branch_b_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="repository_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="branch_a_id" unique="false" columns="branch_a_id,branch_b_id"/>
+      <index name="repository_id" unique="false" columns="repository_id"/>
+    </table>
+    <table name="branches" schema="" catalog="githubreporting" type="TABLE">
+      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="repository_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="repository_id" unique="false" columns="repository_id"/>
+    </table>
+    <table name="commit_files" schema="" catalog="githubreporting" type="TABLE">
+      <column name="commit_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="file_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="action" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="lines_added" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="lines_removed" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+    </table>
+    <table name="commits" schema="" catalog="githubreporting" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="repository_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="branch_diff_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sha" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="author" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="message" sqlType="VARCHAR" precision="1024" scale="0" nullable="false" jdbcType="12"/>
+      <column name="commit_date" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="branch_diff_id" unique="false" columns="branch_diff_id"/>
+      <index name="repository_id" unique="false" columns="repository_id"/>
+    </table>
+    <table name="files" schema="" catalog="githubreporting" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="repository_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="path" sqlType="VARCHAR" precision="256" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="repository_id" unique="false" columns="repository_id"/>
+    </table>
+    <table name="repositories" schema="" catalog="githubreporting" type="TABLE">
+      <column name="id" sqlType="MEDIUMINT" precision="7" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+  </data-source>
+</component>
